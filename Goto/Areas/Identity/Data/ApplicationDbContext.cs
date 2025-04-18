@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Goto.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,9 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
     }
 
+    public DbSet<Car> Cars { get; set; }
+    public DbSet<Rental> Rentals { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -19,3 +23,5 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         // Add your customizations after calling base.OnModelCreating(builder);
     }
 }
+
+

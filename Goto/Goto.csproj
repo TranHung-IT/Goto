@@ -22,6 +22,9 @@
     <Folder Include="Areas\AdminPanel\Models\" />
     <Folder Include="Areas\UserPanel\Data\" />
     <Folder Include="Areas\UserPanel\Models\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\lib\signalr\" />
+    <Folder Include="wwwroot\models\" />
   </ItemGroup>
 
 </Project>
