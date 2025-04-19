@@ -1,5 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model Goto.Models.Car
+<h1>@Model.Brand @Model.Model</h1>
+<img src="@Model.ImageUrl" alt="Car Image" />
+<div id="3d-container" style="width:100%;height:400px;"></div>
+
+<!-- Load Three.js và các phụ thuộc -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<!-- Thêm ARButton.js để kích hoạt WebXR -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/ARButton.js"></script>
+
+<!-- File JS xử lý 3D/AR của bạn -->
+<script src="/js/threejs/car3d.js"></script>
+
+<script>
+    init3D("@Model.Model3DUrl"); // Gọi hàm khởi tạo 3D/AR
+</script>
