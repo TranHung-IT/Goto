@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Goto.Areas.AdminPanel.Controllers
 {
-    [Area("Admin")]
+    [Area("AdminPanel")]
+    [Route("AdminPanel/Home")]
     [Authorize(Roles = "Admin")]
     public class CarController : Controller
     {

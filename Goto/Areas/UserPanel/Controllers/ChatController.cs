@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Goto.Areas.UserPanel.Controllers
 {
-    [Area("User")]
+    [Area("UserPanel")]
+    [Route("UserPanel/Home")]
     [Authorize]
     public class ChatController : Controller
     {

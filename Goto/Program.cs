@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Goto.Data;
 using Goto.Hubs;
@@ -21,9 +21,10 @@ builder.Services.ConfigureApplicationCookie(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
-builder.Services.AddSignalR();
 app.MapHub<ChatHub>("/chatHub");
 
 using (var scope = app.Services.CreateScope())
@@ -50,6 +51,13 @@ app.MapStaticAssets();
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-    //.WithStaticAssets();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();  // Đảm bảo tất cả các controller khác cũng được map
+
+app.MapRazorPages();
 
 app.Run();
