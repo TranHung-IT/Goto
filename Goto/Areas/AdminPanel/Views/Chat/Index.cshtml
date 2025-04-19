@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Admin Chat Panel";
+    var userName = User.Identity?.Name ?? "Admin";
 }
+
+<h2>Admin Chat Panel</h2>
+
+<div style="margin-bottom: 10px;">
+    <input type="text" id="messageInput" placeholder="Type a message..." style="width: 80%;" />
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<ul id="messageList" style="list-style: none; padding-left: 0;"></ul>
+
+<!-- SignalR script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script>
+    const user = "@userName";
+
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chatHub")
+        .build();
+
+    connection.on("ReceiveMessage", (user, message) => {
+        const li = document.createElement("li");
+        li.textContent = `${user}: ${message}`;
+        document.getElementById("messageList").appendChild(li);
+    });
+
+    connection.start()
+        .then(() => console.log("SignalR connected."))
+        .catch(err => console.error("SignalR error: ", err));
+
+    function sendMessage() {
+        const message = document.getElementById("messageInput").value;
+        if (message.trim() !== "") {
+            connection.invoke("SendMessage", user, message)
+                .catch(err => console.error("Send failed: ", err));
+            document.getElementById("messageInput").value = "";
+        }
+    }
+</script>
