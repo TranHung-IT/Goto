@@ -2,6 +2,7 @@
 
 namespace Goto.Areas.AdminPanel.Controllers
 {
+    [Area("AdminPanel")]
     [Route("AdminPanel/Home")]
     public class HomeController : Controller
     {

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace Goto.Areas.AdminPanel.Controllers
 {
     [Area("AdminPanel")]
-    [Route("AdminPanel/Home")]
     [Authorize]
     public class ChatController : Controller
     {

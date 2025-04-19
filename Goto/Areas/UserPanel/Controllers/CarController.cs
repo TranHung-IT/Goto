@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Goto.Areas.UserPanel.Controllers
 {
     [Area("UserPanel")]
-    [Route("UserPanel/Home")]
     public class CarController : Controller
     {
         private readonly ApplicationDbContext _context;

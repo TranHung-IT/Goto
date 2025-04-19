@@ -8,7 +8,6 @@ using Stripe;
 namespace Goto.Areas.UserPanel.Controllers
 {
     [Area("UserPanel")]
-    [Route("UserPanel/Home")]
     [Authorize]
     public class RentalController : Controller
     {
